@@ -168,10 +168,6 @@ def write_eval_results_to_csv_with_pandas(eval_results):
 
     # Write the reshaped results to a CSV file
     if reshaped_results:
-        import pandas as pd
-        import os
-        from datetime import datetime
-
         df = pd.DataFrame(reshaped_results, columns=columns)
         output_dir = "output"
         os.makedirs(output_dir, exist_ok=True)
