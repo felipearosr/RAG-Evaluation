@@ -93,7 +93,6 @@ def get_query_engine(index, config: Config):
     reranker = CohereRerank(api_key=config.cohere_api_key, top_n=3)
     query_engine = index.as_query_engine(
         similarity_top_k=6,
-        # vector_store_query_mode="hybrid",
         node_postprocessors=[reranker],
         query_transform=step_decompose_transform,
         response_synthesizer_mode="refine",

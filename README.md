@@ -1,7 +1,5 @@
 # Llama Index Evaluation Tool
 
-## Introduction
-
 This tool is designed to evaluate large language models (LLMs) and their embeddings, focusing on aspects such as faithfulness, relevancy, and correctness. It uses various components from the llama_index library, integrates OpenAI and Cohere APIs, and supports asynchronous operations for efficient processing.
 
 ## Table of Contents
@@ -20,7 +18,19 @@ This tool is designed to evaluate large language models (LLMs) and their embeddi
 git clone https://github.com/felipearosr/RAG-Evaluation
 ```
 
-2. Install the required packages:
+2. Navigate to the project directory:
+```shell
+cd RAG-Evaluation
+```
+
+3. Create a conda environment:
+
+```shell
+conda create -n rag-eval python==3.11 -y && source activate rag-eval
+```
+This creates a new Conda environment named rag-eval and activates it. Using a virtual environment is recommended to avoid conflicts with other Python projects or your system's Python.
+
+4. Install the required packages:
 
 ```shell
 pip install -r requirements.txt
@@ -28,13 +38,26 @@ pip install -r requirements.txt
 
 ## Usage
 
-To use this tool, set up your environment variables for OpenAI and Cohere API keys, then run the script using:
+Running the Evaluation Script:
+
+1. Generate New Questions (Optional):
+
+    If you need to generate new questions for evaluation, use the --generate flag. This step is optional if you have already generated questions stored in questions.json:
 
 ```shell
 python eval.py --generate
 ```
 
-Use the `--generate` flag to generate new questions before evaluation. This is not needed if you already generated the questions. This questions will go into the file `questions.json`.
+This command generates new questions based on the documents provided and saves them to `questions.json`. If you skip this step, the script will use existing questions from the file.
+
+2. Run the Evaluation:
+
+Once you have your questions ready (either newly generated or previously stored), run the script without the `--generate` flag to start the evaluation:
+
+```shell
+python eval.py
+```
+This command evaluates the set questions using the configured LLMs and embeddings, then outputs the results.
 
 ## Features
 
@@ -56,7 +79,7 @@ Use the `--generate` flag to generate new questions before evaluation. This is n
 
 ## Configuration
 
-Configure the tool by setting the following environment variables:
+Configure the tool by setting the following environment variables in your `.env` file, you can follow the example of `.env.example`:
 
 - `OPENAI_API_KEY`: Your OpenAI API key.
 - `COHERE_API_KEY`: Your Cohere API key.
