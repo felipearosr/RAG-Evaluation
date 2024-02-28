@@ -1,5 +1,5 @@
+spacy
 openai
 llama-index
 llama-index-core
-
 llama-index-postprocessor-cohere-rerank
